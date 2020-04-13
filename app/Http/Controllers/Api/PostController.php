@@ -5,33 +5,33 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\Languages;
 use App\Http\Controllers\ApiController;
 use App\Models\Page;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
-class PageController extends ApiController
+class PostController extends ApiController
 {
+    public function getPosts() {
 
-    public function getPages() {
-
-        $pages = Page::where('is_published', 1)
+        $posts = Post::where('is_published', 1)
             ->paginate(10);
 
         return response()->json([
             'success' => true,
-            'data' => $pages,
+            'data' => $posts,
             'errors' => []
         ]);
     }
 
     public function getBySlug($slug) {
 
-        $page = Page::where('slug', $slug)
+        $post = Post::where('slug', $slug)
             ->where('is_published', 1)
             ->first();
 
-        if ($page) {
+        if ($post) {
             return response()->json([
                 'success' => true,
-                'data' => $page,
+                'data' => $post,
                 'errors' => []
             ]);
         }
@@ -41,20 +41,20 @@ class PageController extends ApiController
             'errors' => ['page is not found']
         ]);
     }
-
     public function update(Request $request) {
 
         $data = $request->only(['title', 'content', 'is_published']);
-        $page = Page::firstOrNew(['id' => $request->get('id')]);
+        $post = Post::firstOrNew(['id' => $request->get('id')]);
+
         if (!$request->get('id')) {
             $data['slug'] = Languages::cyrillicToLat($data['title']);
         }
-        $page->fill($data);
-        $page->save();
+        $post->fill($data);
+        $post->save();
 
         return response()->json([
             'success' => true,
-            'data' => $page,
+            'data' => $post,
             'errors' => []
         ]);
     }

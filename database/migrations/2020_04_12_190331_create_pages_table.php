@@ -18,6 +18,7 @@ class CreatePagesTable extends Migration
             $table->text("title")->nullable();
             $table->text("slug")->nullable();
             $table->text("content")->nullable();
+            $table->boolean('is_published')->default(false);
             $table->timestamps();
         });
     }
