@@ -9,23 +9,5 @@ use Illuminate\Http\Request;
 
 class TagController extends ApiController
 {
-    public function update(Request $request) {
-
-        $data = $request->only(['title']);
-        $tag = Tag::firstOrNew(['id' => $request->get('id')]);
-
-        if (!$request->get('id')) {
-            $data['slug'] = Languages::cyrillicToLat($data['title']);
-        }
-
-        $tag->fill($data);
-        $tag->save();
-
-        return response()->json([
-            'success' => true,
-            'data' => $tag,
-            'errors' => []
-        ]);
-    }
 
 }

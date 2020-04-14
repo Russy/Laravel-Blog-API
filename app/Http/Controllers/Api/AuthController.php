@@ -21,7 +21,5 @@ class AuthController extends ApiController
         else{
             return response()->json(['error'=>['Unauthorised']], 401);
         }
-
     }
-
 }

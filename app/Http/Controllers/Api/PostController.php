@@ -41,22 +41,5 @@ class PostController extends ApiController
             'errors' => ['page is not found']
         ]);
     }
-    public function update(Request $request) {
-
-        $data = $request->only(['title', 'content', 'is_published']);
-        $post = Post::firstOrNew(['id' => $request->get('id')]);
-
-        if (!$request->get('id')) {
-            $data['slug'] = Languages::cyrillicToLat($data['title']);
-        }
-        $post->fill($data);
-        $post->save();
-
-        return response()->json([
-            'success' => true,
-            'data' => $post,
-            'errors' => []
-        ]);
-    }
 
 }
