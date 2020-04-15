@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Helpers\Languages;
 use App\Http\Controllers\ApiController;
-use App\Models\Page;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostController extends ApiController
 {
     public function getPosts() {
 
         $posts = Post::where('is_published', 1)
+            ->with('tags')
+            ->with('categories')
             ->paginate(10);
 
         return response()->json([

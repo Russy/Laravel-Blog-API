@@ -42,13 +42,16 @@ class PostController extends ApiController
     }
     public function update(Request $request) {
 
-        $data = $request->only(['title', 'content', 'is_published']);
+        $data = $request->only(['title', 'content', 'is_published', 'icon', 'excerpt']);
         $post = Post::firstOrNew(['id' => $request->get('id')]);
 
         if (!$request->get('id')) {
             //TODO:Make slugs uniq
             $data['slug'] = Languages::cyrillicToLat($data['title']);
         }
+
+        $post->fill($data);
+        $post->save();
 
         //Save tags
         if ($tags = $request->get('tags')) {
@@ -59,9 +62,6 @@ class PostController extends ApiController
         if ($categories = $request->get('categories')) {
             $post->categories()->sync(explode(',',$categories));
         }
-
-        $post->fill($data);
-        $post->save();
 
         return response()->json([
             'success' => true,
