@@ -16,7 +16,7 @@ class ContentTableSeeder extends Seeder
             $post = new \App\Models\Post();
             $post->fill([
                 'title' => "Test post content $i",
-                'icon' => '<span class="fa fa-code" aria-hidden="true"></span>',
+                'icon' => 'fa fa-code',
                 'content' => 'Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. ',
                 'excerpt' => 'Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. ',
                 'is_published' => 1,
