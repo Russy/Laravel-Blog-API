@@ -12,6 +12,17 @@ class ContentTableSeeder extends Seeder
      */
     public function run()
     {
+        $tags_ids = [];
+        for($i = 1; $i < 5; $i++) {
+            $tag = new \App\Models\Tag();
+            $tag->fill([
+                'title' => "Tag $i",
+                'slug' => "tag-$i"
+            ]);
+            $tag->save();
+            $tags_ids[] = $tag->id;
+        }
+
         for($i = 1; $i < 16; $i++) {
             $post = new \App\Models\Post();
             $post->fill([
@@ -23,6 +34,8 @@ class ContentTableSeeder extends Seeder
                 'slug' => "test-post-content-$i"
             ]);
             $post->save();
+
+            $post->tags()->sync($tags_ids);
         }
 
         for($i = 1; $i < 3; $i++) {
