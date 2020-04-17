@@ -52,7 +52,7 @@ class PostController extends ApiController
             ->with('tags')
             ->with('categories')
             ->limit(10)
-            ->get();
+            ->paginate(10);
 
         return response()->json([
             'success' => true,
