@@ -14,7 +14,6 @@ class PostController extends ApiController
             ->with('tags')
             ->with('categories')
             ->paginate(5);
-        sleep(1);
         return response()->json([
             'success' => true,
             'data' => $posts,
