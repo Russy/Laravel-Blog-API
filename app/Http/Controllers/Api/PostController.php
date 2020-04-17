@@ -51,8 +51,8 @@ class PostController extends ApiController
             ->where('is_published', 1)
             ->with('tags')
             ->with('categories')
-
-            ->paginate(50);
+            ->limit(10)
+            ->get();
 
         return response()->json([
             'success' => true,
