@@ -22,6 +22,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/pages', 'PageController@getPages');
     Route::get('/post/{id}', 'PostController@getBySlug');
     Route::get('/posts', 'PostController@getPosts');
+    Route::post('/search', 'PostController@search');
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'Admin'], function () {
 
