@@ -21,6 +21,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/page/{id}', 'PageController@getBySlug');
     Route::get('/pages', 'PageController@getPages');
     Route::get('/post/{id}', 'PostController@getBySlug');
+    Route::get('/tags/{tag}', 'PostController@postsByTags');
     Route::get('/posts', 'PostController@getPosts');
     Route::post('/search', 'PostController@search');
 

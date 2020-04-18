@@ -13,7 +13,7 @@ class ContentTableSeeder extends Seeder
     public function run()
     {
         $tags_ids = [];
-        for($i = 1; $i < 5; $i++) {
+        for($i = 1; $i <= 5; $i++) {
             $tag = new \App\Models\Tag();
             $tag->fill([
                 'title' => "Tag $i",
@@ -35,18 +35,18 @@ class ContentTableSeeder extends Seeder
             ]);
             $post->save();
 
-            $post->tags()->sync($tags_ids);
+            $post->tags()->sync([$tags_ids[rand(0 , 4)], $tags_ids[rand(0 , 4)]]);
         }
 
         for($i = 1; $i < 3; $i++) {
-            $post = new \App\Models\Post();
-            $post->fill([
+            $page = new \App\Models\Page();
+            $page->fill([
                 'title' => "Test Page $i",
                 'content' => 'Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. Lorem ipsum dollar sith. ',
                 'is_published' => 1,
                 'slug' => "test-page-$i"
             ]);
-            $post->save();
+            $page->save();
         }
     }
 }

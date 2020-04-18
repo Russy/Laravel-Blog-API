@@ -63,4 +63,22 @@ class PostController extends ApiController
         ]);
     }
 
+    public function postsByTags($tag) {
+
+        $posts = Post::where('is_published', 1)
+          ->with('tags')
+            ->whereHas( 'tags', function($query) use($tag) {
+                $query->where('tags.slug', $tag);
+            })
+            ->whereHas('tags')
+            ->with('categories')
+            ->paginate(5);
+
+        return response()->json([
+            'success' => true,
+            'data' => $posts,
+            'errors' => []
+        ]);
+    }
+
 }
