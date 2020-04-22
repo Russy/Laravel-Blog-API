@@ -13,6 +13,7 @@ class PostController extends ApiController
         $posts = Post::where('is_published', 1)
             ->with('tags')
             ->with('categories')
+            ->orderBy('id', 'desc')
             ->paginate(5);
         return response()->json([
             'success' => true,

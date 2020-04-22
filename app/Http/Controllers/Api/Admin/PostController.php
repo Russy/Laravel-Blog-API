@@ -11,7 +11,7 @@ class PostController extends ApiController
 {
     public function getPosts() {
 
-        $posts = Post::paginate(10);
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
 
         return response()->json([
             'success' => true,
@@ -55,12 +55,16 @@ class PostController extends ApiController
 
         //Save tags
         if ($tags = $request->get('tags')) {
-            $post->tags()->sync(explode(',',$tags));
+            $post->tags()->sync(array_map(function($tag) {
+                return $tag['id'];
+            }, $tags));
         }
 
         //Save categories
         if ($categories = $request->get('categories')) {
-            $post->categories()->sync(explode(',',$categories));
+            $post->tags()->sync(array_map(function($category) {
+                return $category['id'];
+            }, $categories));
         }
 
         return response()->json([
