@@ -20,9 +20,9 @@ class PostController extends ApiController
         ]);
     }
 
-    public function getBySlug($slug) {
+    public function getById($id) {
 
-        $post = Post::where('slug', $slug)
+        $post = Post::where('id', $id)
             ->with('tags')
             ->with('categories')
             ->first();

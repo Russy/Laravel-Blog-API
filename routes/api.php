@@ -27,12 +27,12 @@ Route::namespace('Api')->group(function () {
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'Admin'], function () {
 
-        Route::put('/admin/page/update', 'PageController@update');
-        Route::put('/admin/post/update', 'PostController@update');
+        Route::post('/admin/page/update', 'PageController@update');
+        Route::post('/admin/post/update', 'PostController@update');
 
         Route::get('/admin/page/{id}', 'PageController@getBySlug');
         Route::get('/admin/pages', 'PageController@getPages');
-        Route::get('/admin/post/{id}', 'PostController@getBySlug');
+        Route::get('/admin/post/{id}', 'PostController@getById');
         Route::get('/admin/posts', 'PostController@getPosts');
 
         Route::put('/admin/tag/update', 'TagController@update');
