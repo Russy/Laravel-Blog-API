@@ -41,10 +41,10 @@ Route::namespace('Api')->group(function () {
         Route::put('/admin/category/update', 'CategoryController@update');
         Route::get('/admin/categories', 'CategoryController@get');
 
-        Route::delete('/admin/category/delete/{id}', 'CategoryController@delete');
-        Route::delete('/admin/page/delete/{id}', 'PageController@delete');
-        Route::delete('/admin/post/delete/{id}', 'PostController@delete');
-        Route::delete('/admin/tag/delete/{id}', 'TagController@delete');
+        Route::post('/admin/category/delete/{id}', 'CategoryController@delete');
+        Route::post('/admin/page/delete/{id}', 'PageController@delete');
+        Route::post('/admin/post/delete/{id}', 'PostController@delete');
+        Route::post('/admin/tag/delete/{id}', 'TagController@delete');
 
     });
 
