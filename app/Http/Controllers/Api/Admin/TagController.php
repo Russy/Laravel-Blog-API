@@ -34,7 +34,10 @@ class TagController extends ApiController
     }
 
     public function delete($id) {
-        Tag::where('id', $id)->delete();
+        $tag = Tag::where('id', $id)->first();
+
+        $tag->posts()->sync([]);
+        $tag->delete();
         return response()->json([
             'success' => true,
             'errors' => []

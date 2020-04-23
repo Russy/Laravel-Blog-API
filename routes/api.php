@@ -35,16 +35,16 @@ Route::namespace('Api')->group(function () {
         Route::get('/admin/post/{id}', 'PostController@getById');
         Route::get('/admin/posts', 'PostController@getPosts');
 
-        Route::put('/admin/tag/update', 'TagController@update');
+        Route::post('/admin/tag/update', 'TagController@update');
         Route::get('/admin/tags', 'TagController@get');
 
         Route::put('/admin/category/update', 'CategoryController@update');
         Route::get('/admin/categories', 'CategoryController@get');
 
-        Route::post('/admin/category/delete/{id}', 'CategoryController@delete');
-        Route::post('/admin/page/delete/{id}', 'PageController@delete');
-        Route::post('/admin/post/delete/{id}', 'PostController@delete');
-        Route::post('/admin/tag/delete/{id}', 'TagController@delete');
+        Route::get('/admin/category/delete/{id}', 'CategoryController@delete');
+        Route::get('/admin/page/delete/{id}', 'PageController@delete');
+        Route::get('/admin/post/delete/{id}', 'PostController@delete');
+        Route::get('/admin/tag/delete/{id}', 'TagController@delete');
 
     });
 
