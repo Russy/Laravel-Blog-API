@@ -30,7 +30,7 @@ Route::namespace('Api')->group(function () {
         Route::post('/admin/page/update', 'PageController@update');
         Route::post('/admin/post/update', 'PostController@update');
 
-        Route::get('/admin/page/{id}', 'PageController@getBySlug');
+        Route::get('/admin/page/{id}', 'PageController@getById');
         Route::get('/admin/pages', 'PageController@getPages');
         Route::get('/admin/post/{id}', 'PostController@getById');
         Route::get('/admin/posts', 'PostController@getPosts');

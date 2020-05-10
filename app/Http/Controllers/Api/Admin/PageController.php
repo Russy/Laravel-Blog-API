@@ -21,9 +21,9 @@ class PageController extends ApiController
         ]);
     }
 
-    public function getBySlug($slug) {
+    public function getById($id) {
 
-        $page = Page::where('slug', $slug)
+        $page = Page::where('id', $id)
             ->first();
 
         if ($page) {

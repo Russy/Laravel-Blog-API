@@ -40,6 +40,7 @@ class PostController extends ApiController
             'errors' => ['page is not found']
         ]);
     }
+
     public function update(Request $request) {
 
         $data = $request->only(['title', 'content', 'is_published', 'icon', 'excerpt']);
