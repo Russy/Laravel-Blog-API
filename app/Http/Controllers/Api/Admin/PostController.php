@@ -76,7 +76,9 @@ class PostController extends ApiController
     }
 
     public function delete($id) {
-        Post::where('id', $id)->delete();
+        $post =  Post::where('id', $id)->first();
+        $post->tags()->sync([]);
+        $post->delete();
         return response()->json([
             'success' => true,
             'errors' => []

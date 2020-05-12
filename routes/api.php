@@ -26,25 +26,36 @@ Route::namespace('Api')->group(function () {
     Route::post('/search', 'PostController@search');
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'Admin'], function () {
+        Route::prefix('admin')->group(function () {
 
-        Route::post('/admin/page/update', 'PageController@update');
-        Route::post('/admin/post/update', 'PostController@update');
+            Route::get('/pages', 'PageController@getPages');
+            Route::prefix('page')->group(function () {
+                Route::post('/update', 'PageController@update');
+                Route::get('/{id}', 'PageController@getById');
+                Route::get('/delete/{id}', 'PageController@delete');
+            });
 
-        Route::get('/admin/page/{id}', 'PageController@getById');
-        Route::get('/admin/pages', 'PageController@getPages');
-        Route::get('/admin/post/{id}', 'PostController@getById');
-        Route::get('/admin/posts', 'PostController@getPosts');
+            Route::get('/posts', 'PostController@getPosts');
+            Route::prefix('post')->group(function () {
+                Route::post('/update', 'PostController@update');
+                Route::get('/{id}', 'PostController@getById');
+                Route::get('/delete/{id}', 'PostController@delete');
+            });
 
-        Route::post('/admin/tag/update', 'TagController@update');
-        Route::get('/admin/tags', 'TagController@get');
+            Route::get('/tags', 'TagController@get');
+            Route::prefix('tag')->group(function () {
+                Route::post('/update', 'TagController@update');
+                Route::get('/delete/{id}', 'TagController@delete');
 
-        Route::put('/admin/category/update', 'CategoryController@update');
-        Route::get('/admin/categories', 'CategoryController@get');
+            });
 
-        Route::get('/admin/category/delete/{id}', 'CategoryController@delete');
-        Route::get('/admin/page/delete/{id}', 'PageController@delete');
-        Route::get('/admin/post/delete/{id}', 'PostController@delete');
-        Route::get('/admin/tag/delete/{id}', 'TagController@delete');
+            Route::get('/categories', 'CategoryController@get');
+            Route::prefix('category')->group(function () {
+                Route::put('/update', 'CategoryController@update');
+                Route::get('/delete/{id}', 'CategoryController@delete');
+            });
+
+        });
 
     });
 
