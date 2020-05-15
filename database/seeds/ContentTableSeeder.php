@@ -48,5 +48,11 @@ class ContentTableSeeder extends Seeder
             ]);
             $page->save();
         }
+
+        $option = new \App\Models\Options([
+            'name' => 'title',
+            'value' => 'Lorem ipsum dollar sith.'
+        ]);
+        $option->save();
     }
 }
