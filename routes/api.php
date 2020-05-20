@@ -24,6 +24,7 @@ Route::namespace('Api')->group(function () {
     Route::get('/tags/{tag}', 'PostController@postsByTags');
     Route::get('/posts', 'PostController@getPosts');
     Route::post('/search', 'PostController@search');
+    Route::get('/option/{name}', 'OptionsController@get');
 
     Route::group(['middleware' => ['auth:api'], 'namespace' => 'Admin'], function () {
         Route::prefix('admin')->group(function () {
@@ -54,6 +55,9 @@ Route::namespace('Api')->group(function () {
                 Route::put('/update', 'CategoryController@update');
                 Route::get('/delete/{id}', 'CategoryController@delete');
             });
+
+            Route::get('/options', 'OptionsController@list');
+            Route::post('/options', 'OptionsController@post');
 
         });
 
