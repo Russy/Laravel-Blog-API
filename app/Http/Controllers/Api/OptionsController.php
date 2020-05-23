@@ -18,5 +18,15 @@ class OptionsController extends ApiController
         ]);
     }
 
+    public function list()
+    {
+        $options = Options::get(['name', 'value']);
+        return response()->json([
+            'success' => true,
+            'data' => $options->toArray(),
+            'errors' => []
+        ]);
+    }
+
 
 }
