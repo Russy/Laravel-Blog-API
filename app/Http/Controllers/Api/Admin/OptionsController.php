@@ -20,6 +20,8 @@ class OptionsController extends ApiController
 
     public function post(Request $request)
     {
+        Options::getQuery()->delete();
+
         $options = json_decode($request->get('options'));
         $response = [];
         foreach ($options as $opt) {
