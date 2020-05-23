@@ -10,4 +10,8 @@ class Options extends Model
         'name', 'value'
     ];
 
+    protected $casts = [
+        'value' => 'array'
+    ];
+
 }

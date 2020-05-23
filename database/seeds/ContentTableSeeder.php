@@ -51,7 +51,7 @@ class ContentTableSeeder extends Seeder
 
         $option = new \App\Models\Options([
             'name' => 'title',
-            'value' => 'Lorem ipsum dollar sith.'
+            'value' => ['Lorem ipsum dollar sith']
         ]);
         $option->save();
     }

@@ -16,7 +16,7 @@ class CreateOptionsTable extends Migration
         Schema::create('options', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->text('value')->nullable();
+            $table->json('value')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('options');
     }
 }
