@@ -22,11 +22,12 @@ class OptionsController extends ApiController
     {
         Options::getQuery()->delete();
 
-        $options = json_decode($request->get('options'));
+        $options = $request->get('options');
         $response = [];
+
         foreach ($options as $opt) {
-            $option = Options::firstOrCreate(['name' => $opt->name]);
-            $option->update(['name' => $opt->name, 'value' => $opt->value]);
+            $option = Options::firstOrCreate(['name' => $opt['name']]);
+            $option->update(['name' => $opt['name'], 'value' => $opt['value']]);
             $option->save();
             $response[] = $option->toArray();
         }
